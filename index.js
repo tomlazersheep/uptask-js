@@ -3,12 +3,17 @@ const express = require('express');
 //import routes from routes/index.js
 const routes = require('./routes');
 const path = require('path');
+//import bodyParser library
+const bodyParser = require('body-parser');
 
 //Create express app
 const app = express();
 
 //Set static files dir
 app.use(express.static('static'));
+
+//Use bodyParser to get post requests
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Set PUG as template engine
 app.set('view engine', 'pug');
@@ -21,3 +26,4 @@ app.use('/', routes());
 
 //Set port to 8080
 app.listen(8080);
+

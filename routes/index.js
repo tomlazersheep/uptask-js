@@ -12,5 +12,7 @@ module.exports = function() {
 
   router.get('/new_project', controllers.newProjectController);
 
+  router.post('/new_project', controllers.newProjectPOSTController);
+  
   return router;
 }

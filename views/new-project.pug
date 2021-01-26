@@ -3,8 +3,12 @@ extends _base
 block body
   .contenido-principal
     h1 #{title}
+    
+    if errores
+      each error in errores
+        .alerta=error
 
-    form(action="").agregar-proyecto
+    form(action="/new_project" method="POST").agregar-proyecto
       .campo
         label(for="nombre") Nombre Proyecto:
         input(type="text" id="nombre" name="nombre" placeholder="Nombre Proyecto")

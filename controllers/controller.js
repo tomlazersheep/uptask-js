@@ -15,3 +15,23 @@ exports.newProjectController = (req,res) => {
     title: 'Nuevo Proyecto'
   });
 }
+
+exports.newProjectPOSTController = (req, res) => {
+  const { nombre } = req.body;
+  let errores = [];
+  let err_flag = false;
+
+  if(nombre == '') {
+    err_flag = true;
+    errores.push('No hay nombre');
+  }
+  
+  if (err_flag) {
+    res.render('new-project', {
+      title: 'Nuevo Proyecto',
+      errores
+    });
+  } else {
+    res.send('pasaste  sin errores '+ nombre);
+  }
+}

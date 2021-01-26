@@ -75,7 +75,7 @@ body {
     background-color: #FDD835;
     text-align: center;
     transition: background-color .5s ease-in-out;
-    padding: 2rem;
+    padding: 10px 30px;
     text-transform: uppercase;
     border: none;
     font-weight: 900;
@@ -84,7 +84,6 @@ body {
 
     display: flex;
     align-items: center;
-    line-height: 0;
 }
 .boton span {
     font-size: 2.2rem;
