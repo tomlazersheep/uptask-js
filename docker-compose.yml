@@ -8,6 +8,7 @@ services:
       - ./db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: suite340
+      MYSQL_DATABASE: uptask_db
     ports: 
      - 3306:3306
     

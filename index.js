@@ -6,6 +6,14 @@ const path = require('path');
 //import bodyParser library
 const bodyParser = require('body-parser');
 
+//Conect to DB
+const db = require('./config/db');
+
+//import models
+require('./models/Proyecto');
+
+db.sync().then(()=>console.log('ok')).catch((error)=>console.log('not ok', error));
+
 //Create express app
 const app = express();
 

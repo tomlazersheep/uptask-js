@@ -1,3 +1,5 @@
+const Proyecto = require('../models/Proyecto');
+
 exports.indexController = (req,res) => {
   res.render('index', {
     title: "Inicio"
@@ -16,7 +18,7 @@ exports.newProjectController = (req,res) => {
   });
 }
 
-exports.newProjectPOSTController = (req, res) => {
+exports.newProjectPOSTController = async(req, res) => {
   const { nombre } = req.body;
   let errores = [];
   let err_flag = false;
@@ -32,6 +34,7 @@ exports.newProjectPOSTController = (req, res) => {
       errores
     });
   } else {
-    res.send('pasaste  sin errores '+ nombre);
+    const newProject = await Proyecto.create({ nombre });
+    res.redirect('/');
   }
 }
