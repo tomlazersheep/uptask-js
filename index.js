@@ -12,7 +12,8 @@ const db = require('./config/db');
 //import models
 require('./models/Proyecto');
 
-db.sync().then(()=>console.log('ok')).catch((error)=>console.log('not ok', error));
+//sync database to apply migrations
+db.sync().then(()=>console.log('db connected & synced')).catch((error)=>console.log('Error connecting to db: ', error));
 
 //Create express app
 const app = express();
