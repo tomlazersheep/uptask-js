@@ -11,11 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-<<<<<<< Updated upstream
-    "express-validator": "^6.9.2",
-=======
     "express-validator": "^6.10.0",
->>>>>>> Stashed changes
     "handlebars": "^4.7.6",
     "mysql2": "^2.2.5",
     "pug": "^3.0.0",

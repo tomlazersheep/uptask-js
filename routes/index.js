@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { body } = require('express-validator');
 
 //Import controllers object from /controllers/controller.js
 const controllers = require('../controllers/controller.js');
