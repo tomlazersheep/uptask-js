@@ -2,6 +2,8 @@ const { Sequelize } = require('sequelize');
 const sequelize = require('sequelize');
 const db = require('../config/db');
 const slug = require('slug');
+const shortid = require('shortid');
+
 
 const Proyectos = db.define('proyectos',{
   id: {
@@ -14,7 +16,7 @@ const Proyectos = db.define('proyectos',{
 });
 
 Proyectos.beforeCreate( (user) => {
-  user.url = slug(user.nombre);
+  user.url = slug(user.nombre + "-" + shortid.generate());
 });
 
 module.exports = Proyectos;

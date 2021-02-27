@@ -1,8 +1,10 @@
 const Proyecto = require('../models/Proyecto');
 
-exports.indexController = (req,res) => {
+exports.indexController = async (req,res) => {
+  const projects = await Proyecto.findAll();
   res.render('index', {
-    title: "Inicio"
+    title: "Inicio",
+    projects
   }); //view name without .pug and object with context vars
 }
 

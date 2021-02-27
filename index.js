@@ -12,6 +12,9 @@ const db = require('./config/db');
 //import models
 require('./models/Proyecto');
 
+//import helpers
+const helpers = require('./helpers');
+
 //sync database to apply migrations
 db.sync().then(()=>console.log('db connected & synced')).catch((error)=>console.log('Error connecting to db: ', error));
 
@@ -20,6 +23,12 @@ const app = express();
 
 //Set static files dir
 app.use(express.static('static'));
+
+// set a helper inside locals to access it globally
+app.use((req, res, next) => {
+  res.locals.vardump = helpers.vardump; //res.locals is like a global object, you can access it everywhere
+  next(); // go on to next middleware
+});
 
 //Use bodyParser to get post requests
 app.use(bodyParser.urlencoded({extended: true}));
