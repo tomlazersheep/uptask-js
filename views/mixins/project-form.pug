@@ -1,0 +1,9 @@
+mixin project-form( project = {})
+
+  form(action=`${project.id? '/proyecto/editar/'+project.id :'/new_project'}` method="POST").agregar-proyecto
+    .campo
+      label(for="nombre") Nombre Proyecto:
+      input(type="text" id="nombre" name="nombre" placeholder="Nombre Proyecto" value=project.nombre)
+    .campo-enviar
+      input(type="submit" value=`${project.nombre ? 'Guardar' : 'Crear'}` class="boton")
+        

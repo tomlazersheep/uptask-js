@@ -1,6 +1,7 @@
 extends _base
 
 block body  
-  h1 #{title}
 
-  pre= vardump(project)
+  .contenedor-acciones 
+    a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar
+    button#eliminar-proyecto(type="button" class="boton eliminar") Eliminar

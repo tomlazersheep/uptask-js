@@ -23,4 +23,6 @@ html(lang="en")
               each project in projects
                 li
                   a(href=`/proyecto/${project.url}`) #{project.nombre}
-      block body
+      .main-content
+        h1(class="title") #{title}
+        block body

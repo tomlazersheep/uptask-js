@@ -26,6 +26,7 @@ exports.newProjectController = async (req,res) => {
 }
 
 exports.newProjectPOSTController = async(req, res) => {
+  const projects = await Proyecto.findAll();
   const { nombre } = req.body;
   let errores = [];
   let err_flag = false;
@@ -38,7 +39,8 @@ exports.newProjectPOSTController = async(req, res) => {
   if (err_flag) {
     res.render('new-project', {
       title: 'Nuevo Proyecto',
-      errores
+      errores,
+      projects
     });
   } else {
     const newProject = await Proyecto.create({ nombre });
@@ -47,6 +49,7 @@ exports.newProjectPOSTController = async(req, res) => {
 }
 
 exports.singleProjectController = async (req, res) => {
+  //make one query, await untill done and then do the other
   const projects = await Proyecto.findAll();
 
   //res.send(req.params.url); // in req.params you can get variables from the router like /:url
@@ -67,5 +70,49 @@ exports.singleProjectController = async (req, res) => {
       proyecto,
       projects
     });
+  }
+}
+
+exports.singleProjectEdit = async (req, res) => {
+  const projects_promise = Proyecto.findAll();
+  const project_promise = Proyecto.findOne({
+    where: {
+      id: req.params.id
+    }
+  });
+
+  // mix both promises and make both queries simoultaneously
+  const [projects, project] = await Promise.all([projects_promise, project_promise]);
+
+  res.render('new-project', {
+    title: `Editar Proyecto: ${project.nombre}`,
+    project,
+    projects
+  });
+}
+
+exports.editProjectPOSTController = async (req, res) => {
+  const projects = await Proyecto.findAll();
+  const { nombre } = req.body;
+  let errores = [];
+  let err_flag = false;
+
+  if (nombre == '') {
+    err_flag = true;
+    errores.push('No hay nombre');
+  }
+
+  if (err_flag) {
+    res.render('new-project', {
+      title: 'Nuevo Proyecto',
+      errores,
+      projects
+    });
+  } else {
+    const newProject = await Proyecto.update(
+      { nombre: nombre },
+      { where: { id: req.params.id }}
+      );
+    res.redirect('/');
   }
 }

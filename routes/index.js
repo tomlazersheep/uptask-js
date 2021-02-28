@@ -5,7 +5,7 @@ const router = express.Router();
 const controllers = require('../controllers/controller.js');
 
 //Import express validator to sanitize entries on posts
-const { body } = require('express-validator/check');
+const { body } = require('express-validator');
 
 //Export router object with endpoints and controllers
 module.exports = function() {
@@ -20,6 +20,12 @@ module.exports = function() {
     controllers.newProjectPOSTController);  
   
   router.get('/proyecto/:url', controllers.singleProjectController);
+
+  router.get('/proyecto/editar/:id', controllers.singleProjectEdit);
  
+  router.post('/proyecto/editar/:id',
+    body('nombre').not().isEmpty().trim().escape(),
+    controllers.editProjectPOSTController);
+
   return router;
 }
