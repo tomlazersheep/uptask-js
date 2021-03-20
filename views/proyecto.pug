@@ -4,4 +4,4 @@ block body
 
   .contenedor-acciones 
     a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar
-    button#eliminar-proyecto(type="button" class="boton eliminar") Eliminar
+    button#eliminar-proyecto(type="button" data-project-url=proyecto.url class="boton eliminar") Eliminar

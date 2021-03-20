@@ -116,3 +116,7 @@ exports.editProjectPOSTController = async (req, res) => {
     res.redirect('/');
   }
 }
+
+exports.projectDELETEController = async (req,res) => {
+  
+}
