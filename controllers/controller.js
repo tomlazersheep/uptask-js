@@ -118,5 +118,16 @@ exports.editProjectPOSTController = async (req, res) => {
 }
 
 exports.projectDELETEController = async (req,res) => {
-  
+  const projectToDelete = await Proyecto.findOne({
+    where: {
+      url: req.params.url
+    }
+  });
+
+  if (!projectToDelete) {
+    res.send(500);
+  } else {
+    await projectToDelete.destroy();
+    res.send(200);
+  }
 }

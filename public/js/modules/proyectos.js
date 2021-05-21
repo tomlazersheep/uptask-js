@@ -18,6 +18,7 @@ if (btn_eliminar) {
     }).then((result) => {
       if (result.isConfirmed) {
         //send axios request
+        console.log("deleting...");
         axios.delete(
           `${location.origin}/proyecto/${url_project}`,
           {
@@ -27,10 +28,14 @@ if (btn_eliminar) {
         .then((response) => {
           console.log(response);
           sweetalert.fire('Borrado!', '', 'success');
-          // setTimeout(() => {
-          //   window.location.href = '/';
-          // },1500);
+          setTimeout(() => {
+            window.location.href = '/';
+          },1500);
 
+        }) 
+        .catch((err) => {
+          sweetalert.fire('Proyecto no borrado', '', 'error')
+    
         });
 
 
